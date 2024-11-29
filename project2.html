@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - Prajwal's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Projects</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            
+         <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Filter Buttons -->
+        <div id="filter-buttons">
+            <button data-filter="all">All</button>
+            <button data-filter="graphic-design">Graphic Design</button>
+        </div>
+
+        <!-- Projects Section -->
+        <section id="project-gallery">
+            <div class="project" data-category="graphic-design">
+                <h3>Fit track app</h3>
+                <p>The FitTrack app design focuses on providing users with an intuitive interface to track fitness goals, monitor health metrics, and analyze workout progress.</p>
+                <img src="images/fit track.png" alt="Social Media Graphics Screenshot" width="500px" loading="lazy">
+            </div>
+            <div class="project" data-category="graphic-design">
+                <h3>Restaurant Website</h3>
+                <p>A visually appealing and responsive website for a local restaurant, including online reservations.</p>
+                <img src="images/restoran.png" alt="Restaurant Website Screenshot" width="500px" loading="lazy">
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const filterButtons = document.querySelectorAll("#filter-buttons button");
+            const projects = document.querySelectorAll(".project");
+
+            filterButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const filter = button.getAttribute("data-filter");
+
+                    projects.forEach(project => {
+                        if (filter === "all" || project.getAttribute("data-category") === filter) {
+                            project.style.display = "block"; // Show matching projects
+                        } else {
+                            project.style.display = "none"; // Hide non-matching projects
+                        }
+                    });
+
+                    // Highlight the active button
+                    filterButtons.forEach(btn => btn.classList.remove("active"));
+                    button.classList.add("active");
+                });
+            });
+        });
+    </script>
+</body>
+</html>
